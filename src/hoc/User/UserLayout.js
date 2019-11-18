@@ -17,15 +17,25 @@ class UserLayout extends Component {
         }
         this.schoolSelectionBox.current.value = selectedSchool;
     }
+    componentDidUpdate(){
 
-    onSelectSchool(event){
-        localStorage.setItem('selectedSchool', event.target.value )
+    }
+
+    onSelectSchool = (event) => {
+        localStorage.setItem('selectedSchool', event.target.value );
+        if (event.target.value !== "none"){
+            this.setState({isSchoolSelected: true})
+        } else {
+            this.setState({isSchoolSelected: false})
+        }
     }
 
     render(){
         let status = "Select a school";
+        let continueBtn = null;
         if (this.state.isSchoolSelected){
-            status = "You have selected:"
+            status = "You have selected:";
+            continueBtn =  <button> Start Survey </button>;
         }
         return (
             <div className={classes.UserLayout}>
@@ -38,6 +48,7 @@ class UserLayout extends Component {
                         <option value="Gardenvale Primary School">Gardenvale Primary School</option>
                         <option value="Geelong Grammar Primary School">Geelong Grammar Primary School</option>
                     </select>
+                    {continueBtn}
                 </div>
             </div>
         )
