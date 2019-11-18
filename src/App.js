@@ -8,7 +8,7 @@ import UserLayout from "./hoc/User/UserLayout";
 function App() {
   return (
     <div className="App">
-      <Route path='/' exact component={UserLayout}/>
+      <Route path='/user' component={UserLayout}/>
       <Route path= '/admin' component={AdminLayout}/>
     </div>
   );
