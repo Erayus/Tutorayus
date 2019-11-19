@@ -7,7 +7,7 @@ class SchoolSelection extends Component {
         this.schoolSelectionBox= React.createRef();
     }
     state = {
-        isSchoolSelected: false
+        selectedSchool: null
     }
 
     componentDidMount(){
@@ -16,24 +16,26 @@ class SchoolSelection extends Component {
             this.setState({isSchoolSelected: true})
         }
         this.schoolSelectionBox.current.value = selectedSchool;
-        console.log('Hellloooo')
     }
 
     onSelectSchool = (event) => {
         localStorage.setItem('selectedSchool', event.target.value );
         if (event.target.value !== "none"){
-            this.setState({isSchoolSelected: true})
+            this.setState({selectedSchool: event.target.value})
         } else {
-            this.setState({isSchoolSelected: false})
+            this.setState({selectedSchool: event.target.value})
         }
+    }
+    startSurvey = () => {
+        this.props.history.push('/survey/' + this.state.selectedSchool)
     }
 
     render(){
         let status = "Select a school";
         let continueBtn = null;
-        if (this.state.isSchoolSelected){
+        if (this.state.selectedSchool){
             status = "You have selected:";
-            continueBtn =  <button> Start Survey </button>;
+            continueBtn =  <button onClick={this.startSurvey}> Start Survey </button>;
         }
         return (
                 <div className={classes.schoolSelection}>
