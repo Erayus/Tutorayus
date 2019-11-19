@@ -7,13 +7,13 @@ class SchoolSelection extends Component {
         this.schoolSelectionBox= React.createRef();
     }
     state = {
-        selectedSchool: null
+        selectedSchool: "none"
     }
 
     componentDidMount(){
         const selectedSchool = localStorage.getItem('selectedSchool');
         if (selectedSchool !== "none"){
-            this.setState({isSchoolSelected: true})
+            this.setState({selectedSchool: selectedSchool})
         }
         this.schoolSelectionBox.current.value = selectedSchool;
     }
@@ -33,7 +33,7 @@ class SchoolSelection extends Component {
     render(){
         let status = "Select a school";
         let continueBtn = null;
-        if (this.state.selectedSchool){
+        if (this.state.selectedSchool !== "none"){
             status = "You have selected:";
             continueBtn =  <button onClick={this.startSurvey}> Start Survey </button>;
         }

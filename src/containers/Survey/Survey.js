@@ -4,13 +4,19 @@ import SurveyBtn from "../../components/UI/surveyBtn/surveyBtn";
 
 
 class Survey extends Component {
+    backToSchoolSelection = () => {
+        this.props.history.replace('/')
+    }
     render(){
         return (
             <WhiteBox>
-                <button style={{
+                <button 
+                style={{
                     "float": "left",
                     "padding": "10px 25px"
-                    }}>
+                }}
+                onClick={this.backToSchoolSelection}  
+                >
                     <i className="fa fa-arrow-circle-o-left" style={{"margin-right": "5px", "fontSize": '18px'}}aria-hidden="true"></i> 
                     School Selection
                 </button>
