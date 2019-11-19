@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import classes from "./UserLayout.module.css";
 import {Route, Switch} from 'react-router-dom' ;
 import SchoolSelection from '../../containers/SchoolSelection/SchoolSelection';
+import Survey from '../../containers/Survey/Survey';
 
 class UserLayout extends Component {
     // constructor(props) {
@@ -21,10 +22,6 @@ class UserLayout extends Component {
         // this.schoolSelectionBox.current.value = selectedSchool;
         console.log(this.props.history.location.pathName)
     }
-    // componentDidUpdate(){
-
-    // }
-
     // onSelectSchool = (event) => {
     //     localStorage.setItem('selectedSchool', event.target.value );
     //     if (event.target.value !== "none"){
@@ -54,7 +51,8 @@ class UserLayout extends Component {
                     </select>
                     {continueBtn}
                 </div> */}
-                <Route path="/user" exact component={SchoolSelection}></Route>
+                <Route path="/" exact component={SchoolSelection} />
+                <Route path="/survey" component={Survey} />
             </div>
         )
     }
