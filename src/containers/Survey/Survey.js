@@ -12,8 +12,9 @@ class Survey extends Component {
             <WhiteBox>
                 <button 
                 style={{
-                    "float": "left",
-                    "padding": "10px 25px"
+                    "left": "30px",
+                    "padding": "8px 20px",
+                    "position": "fixed",
                 }}
                 onClick={this.backToSchoolSelection}  
                 >
