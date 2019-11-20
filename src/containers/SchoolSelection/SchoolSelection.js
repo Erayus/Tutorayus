@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import classes from "./SchoolSelection.module.css";
+import { MDBBtn } from 'mdbreact';
 
 class SchoolSelection extends Component {
     constructor(props) {
@@ -35,13 +36,13 @@ class SchoolSelection extends Component {
         let continueBtn = null;
         if (this.state.selectedSchool !== "none"){
             status = "You have selected:";
-            continueBtn =  <button onClick={this.startSurvey}> Start Survey </button>;
+            continueBtn =  <MDBBtn color="success" onClick={this.startSurvey}> Start Survey </MDBBtn>;
         }
         return (
                 <div className={classes.schoolSelection}>
                     <h1>Tutoryaus</h1>
                     <h3>{status}</h3>
-                    <select onChange={this.onSelectSchool} ref={this.schoolSelectionBox}>
+                    <select onChange={this.onSelectSchool} ref={this.schoolSelectionBox} className="browser-default custom-select">
                         <option value="none">Select</option>
                         <option value="St Margaret Primary School">St Margaret Primary School</option>
                         <option value="Gardenvale Primary School">Gardenvale Primary School</option>
