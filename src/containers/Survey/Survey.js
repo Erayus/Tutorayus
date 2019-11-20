@@ -24,6 +24,7 @@ class Survey extends Component {
                 type: 'yesno'
             }
         ],
+        answers: [],
         curQuestionIndex: 0
     }
 
@@ -35,10 +36,22 @@ class Survey extends Component {
         this.props.history.replace('/')
     }
     onQuestionAnswered = (id, response) => {
-        console.log(id + ": " + response)
+        // Add new answer to the answers 
+        const newAnswer = {
+            id: response
+        };
+        const newAnswers = [...this.state.answers, newAnswer];
+        this.setState({answers: newAnswers});
+        // Move to the next question or submit the survey
         if (this.state.curQuestionIndex < this.state.questions.length - 1){
             this.setState({curQuestionIndex: this.state.curQuestionIndex + 1})
+        } else {
+            this.submitSurvey();
+            this.props.history.replace('/')
         }
+    }
+    submitSurvey(){
+        // answers: [{id: response}]
     }
 
     render(){
@@ -50,27 +63,35 @@ class Survey extends Component {
                                 {this.state.questions[this.state.curQuestionIndex].title}
                             </Question>
         return (
+            <React.Fragment>
+
+           
+                <MDBBtn 
+                            color="orange"
+                            style={{
+                                "backgroundColor": "white",
+                                "left": "10px",
+                                "top": "5px",
+                                "position": "fixed",
+                            }}
+                            onClick={this.backToSchoolSelection} >
+                            <i className="fa fa-arrow-circle-o-left" style={{"marginRight": "5px", "fontSize": '18px'}}aria-hidden="true"></i> 
+                            School Selection
+                        </MDBBtn>
             <WhiteBox>
+                 
                 <div className={classes.SurveyHead}>
-                    <MDBBtn 
-                        outline
-                        color="primary"
-                        style={{
-                            "left": "10px",
-                            "top": "5px",
-                            "position": "fixed",
-                        }}
-                        onClick={this.backToSchoolSelection} >
-                        <i className="fa fa-arrow-circle-o-left" style={{"marginRight": "5px", "fontSize": '18px'}}aria-hidden="true"></i> 
-                        School Selection
-                    </MDBBtn>
                     <h2 style={{"fontWeight": "bold"}}>{this.state.surveyingSchool}</h2>
                 </div>
                 
                 <div className={classes.SurveyBody}>
                     {displayingQuestion} 
                 </div>
+                <div>
+                    <h6>{this.state.curQuestionIndex + 1}/{this.state.questions.length}</h6>
+                </div>
             </WhiteBox>
+            </React.Fragment>
         )  
     }
 }
