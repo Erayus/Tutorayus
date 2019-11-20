@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import WhiteBox from "../../hoc/whiteBox/whiteBox";
 import { MDBBtn } from "mdbreact";
 import Question from "../../components/question/question";
-
+import classes from "./Survey.module.css";
 
 class Survey extends Component {
     state = {
@@ -19,22 +19,23 @@ class Survey extends Component {
     render(){
         return (
             <WhiteBox>
-                <div style={{borderBottom: '1px solid grey', padding: '20px 10px'}}>
+                <div className={classes.SurveyHead}>
                     <MDBBtn 
                         outline
                         color="primary"
                         style={{
-                            "left": "30px",
+                            "left": "10px",
+                            "top": "5px",
                             "position": "fixed",
                         }}
                         onClick={this.backToSchoolSelection}  >
                         <i className="fa fa-arrow-circle-o-left" style={{"marginRight": "5px", "fontSize": '18px'}}aria-hidden="true"></i> 
                         School Selection
                     </MDBBtn>
-                    <h2>{this.state.surveyingSchool}</h2>
+                    <h2 style={{"fontWeight": "bold"}}>{this.state.surveyingSchool}</h2>
                 </div>
                 
-                <div>
+                <div className={classes.SurveyBody}>
                     <Question type="yesno">Did you have fun today?</Question>    
                 </div>
             </WhiteBox>

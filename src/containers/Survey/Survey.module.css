@@ -1,0 +1,9 @@
+.SurveyHead{
+    border-bottom: 1px solid grey;
+    padding: 20px 10px
+}
+
+.SurveyBody{
+    padding-top: 20px;
+    padding-bottom: 20px;;
+}
