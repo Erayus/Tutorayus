@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Route, Switch, Redirect} from 'react-router-dom' ;
+import {Route} from 'react-router-dom' ;
 import AdminLayout from "./hoc/Admin/AdminLayout";
 import UserLayout from "./hoc/User/UserLayout";
 
