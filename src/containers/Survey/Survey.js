@@ -10,22 +10,22 @@ class Survey extends Component {
         surveyingSchool: null,
         questions: [
             {
-                id: "1",
+                id: "Q001",
                 title: 'Did you have fun today?',
                 type: 'yesno'
             },
             {
-                id: "2",
+                id: "Q002",
                 title: 'Did you learn something new today?',
                 type: 'yesno'
             },
             {
-                id: "3",
+                id: "Q003",
                 title: "Do you love today's challenges?",
                 type: 'yesno'
             }
         ],
-        answers: {},
+        answers: null,
         curQuestionIndex: 0
     }
 
@@ -38,7 +38,10 @@ class Survey extends Component {
         axios.get("./surveys/" + surveyingSchool+".json")
         .then(
             (res) => {
-                console.log(res)
+                const answers = res.data;
+                if (answers){
+                    this.setState({answers: answers})
+                }
             }
         )
         .catch(
@@ -50,8 +53,16 @@ class Survey extends Component {
     }
     onQuestionAnswered = (questionId, response) => {
         // Add new answer to the answers 
-        const answers = this.state.answers;
-        answers[questionId] = ++answers[questionId] || 1;
+        let answers = this.state.answers;
+        //Initialize answers value
+        if (answers == null){
+            answers = {};
+            answers[questionId] = {"Yes": 0, "No": 0};
+        } else if (!answers[questionId]){
+            answers[questionId] = {"Yes": 0, "No": 0};
+        }
+
+        answers[questionId][response] = ++answers[questionId][response] || 1;
         this.setState({answers: answers});
         // Move to the next question or submit the survey
         if (this.state.curQuestionIndex < this.state.questions.length - 1){
@@ -62,7 +73,6 @@ class Survey extends Component {
         }
     }
     submitSurvey(){
-        // answers: [{id: response}]
         console.log("Survey sent: " + this.state.answers)
         axios.put("surveys/" + this.state.surveyingSchool+".json", this.state.answers).then(
             (res) => {
