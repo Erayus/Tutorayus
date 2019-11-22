@@ -3,6 +3,7 @@ import WhiteBox from "../../hoc/whiteBox/whiteBox";
 import { MDBBtn } from "mdbreact";
 import Question from "../../components/question/question";
 import classes from "./Survey.module.css";
+import axios from "../../axios-survey";
 
 class Survey extends Component {
     state = {
@@ -24,24 +25,34 @@ class Survey extends Component {
                 type: 'yesno'
             }
         ],
-        answers: [],
+        answers: {},
         curQuestionIndex: 0
     }
 
     componentDidMount = () => {
+        // Auto-selected previous selected school
         const surveyingSchool = this.props.match.params.surveyingSchool;
         this.setState({surveyingSchool: surveyingSchool})
+
+        //Get answers from the database
+        axios.get("./surveys/" + surveyingSchool+".json")
+        .then(
+            (res) => {
+                console.log(res)
+            }
+        )
+        .catch(
+            (error) => console.log(error)
+        )
     }
     backToSchoolSelection = () => {
         this.props.history.replace('/')
     }
-    onQuestionAnswered = (id, response) => {
+    onQuestionAnswered = (questionId, response) => {
         // Add new answer to the answers 
-        const newAnswer = {
-            id: response
-        };
-        const newAnswers = [...this.state.answers, newAnswer];
-        this.setState({answers: newAnswers});
+        const answers = this.state.answers;
+        answers[questionId] = ++answers[questionId] || 1;
+        this.setState({answers: answers});
         // Move to the next question or submit the survey
         if (this.state.curQuestionIndex < this.state.questions.length - 1){
             this.setState({curQuestionIndex: this.state.curQuestionIndex + 1})
@@ -52,6 +63,14 @@ class Survey extends Component {
     }
     submitSurvey(){
         // answers: [{id: response}]
+        console.log("Survey sent: " + this.state.answers)
+        axios.put("surveys/" + this.state.surveyingSchool+".json", this.state.answers).then(
+            (res) => {
+                console.log(res);
+            }
+        ).catch(
+            (res) => console.log(res)
+        )
     }
 
     render(){
