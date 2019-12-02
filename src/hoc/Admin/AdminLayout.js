@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Chart from '../../components/Chart/Chart';
 import classes from './AdminLayout.module.css';
 import SchoolInfo from '../../components/SchoolInfo/SchoolInfo';
+import {Route} from 'react-router-dom';
 
 class AdminLayout extends Component {
     render(){
