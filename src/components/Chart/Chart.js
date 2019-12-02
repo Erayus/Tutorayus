@@ -6,16 +6,16 @@ const chart = (props) =>{
         labels: ['Yes', 'No'],
         datasets: [
           {
-            data: [50, 100],
-            backgroundColor: ['#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#36A2EB', '#FFCE56']
+            data: [ props.noOfYes, props.noOfNo],
+            backgroundColor: ['#00C851', '#e53935'],
+            hoverBackgroundColor: ['#b71c1c', '#1b5e20']
           }
         ]
       };
     return (
-        <div style={{ width: 400 }}>
-            <Chart type='doughnut' data={data} />
-            <p>{props.questionTitle}</p>
+        <div style={{width: 350}}>
+            <h5>{props.questionTitle}</h5>
+            <Chart  type='doughnut' data={data} />   
         </div>
     )
 } 
