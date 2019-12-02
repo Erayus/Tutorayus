@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import WhiteBox from "../../hoc/whiteBox/whiteBox";
 import { MDBBtn } from "mdbreact";
-import Question from "../../components/question/question";
+import Question from "../../components/Question/Question";
 import classes from "./Survey.module.css";
 import axios from "../../axios-survey";
 
