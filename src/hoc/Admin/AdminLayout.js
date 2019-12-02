@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import Chart from '../../components/Chart/Chart';
 
 
 class AdminLayout extends Component {
     render(){
         return (
-            <div>
-                Admin Layout
-            </div>
+            <React.Fragment>
+                <Chart/>
+            </React.Fragment>
         )
     }
 }
