@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@bit/primefaces.primereact.chart": "^3.1.8",
     "axios": "^0.19.0",
     "font-awesome": "^4.7.0",
     "mdbootstrap": "^4.9.0",
@@ -16,7 +17,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && webotron sync ./build tutorayus.erayus.com" 
   },
   "eslintConfig": {
     "extends": "react-app"

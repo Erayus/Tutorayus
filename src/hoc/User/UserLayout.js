@@ -6,15 +6,12 @@ import Survey from '../../containers/Survey/Survey';
 
 class UserLayout extends Component {
 
-
-
     componentDidMount(){
       
     }
 
 
     render(){
-  
         return (
             <div className={classes.UserLayout}>
                 <Switch>
